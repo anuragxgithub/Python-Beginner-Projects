@@ -3,7 +3,7 @@ def naive_search(l, target):
         if l[i] == target:
             return i
         
-    return -1  #not found
+    return -1  # not found
 
 def binary_search(l, target):
     s = 0
