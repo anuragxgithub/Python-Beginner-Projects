@@ -1,46 +1,44 @@
 import random
 
-randomNumber = random.randrange(10,50)
+random_number = random.randrange(10, 50)
 
-def guess(num, attempt):    # Here we are guessing secret number of computer
-    if num == randomNumber:
-        print(f"Congrats you guessed it in {attempt} attempts.")
+def guess(user_input, attempt):    # Function for guessing the secret number
+    if user_input == random_number:
+        print(f"Congrats! You guessed it in {attempt} attempts.")
         return True
-    elif num > randomNumber:
-        print("Enter something less")
+    elif user_input > random_number:
+        print("Enter something less.")
         return False
     else:
-        print("Enter something big")
+        print("Enter something bigger.")
         return False
 
-
-def coumputer_guess(x):    # Here computer will guess our secret number.
-    #before starting know one thing it will give error if randrange(2,2) same number comes. Cover this edge case.
-    high = x
+def computer_guess(user_range):    # Function for the computer to guess the secret number
+    # Before starting, consider the case where randrange(2, 2) results in the same number; handle this edge case.
+    high = user_range
     low = 1
     feedback = ''
+
     while feedback != 'c':
         if low != high:
-            guess = random.randrange(low,high)
+            guess = random.randrange(low, high)
         else:
-            low = guess    # could also be high as low = high
-        feedback = input(f"Is {guess} it too high 'h' too low 'l' or correct 'c' : ")
+            low = guess    # Could also be high as low = high
+        feedback = input(f"Is {guess} too high 'h', too low 'l', or correct 'c': ")
+        
         if feedback == 'h':
-            high = guess-1
+            high = guess - 1
         elif feedback == 'l':
-            low = guess+1
+            low = guess + 1
 
-     
-    print(f"Yay! Computer guessed you number, {guess}, correctly.")
+    print(f"Yay! The computer guessed your number, {guess}, correctly.")
 
-
-
-
-# num = int(input("Guess the number: "))
+# Uncomment the following lines to let the user guess the number
+# user_input = int(input("Guess the number: "))
 # attempt = 1
-# while guess(num,attempt) == False:
-#     attempt += 1; 
-#     num = int(input())
+# while not guess(user_input, attempt):
+#     attempt += 1
+#     user_input = int(input())
 
-
-coumputer_guess(100)
+# Uncomment the following line to let the computer guess the user's number within a specified range
+computer_guess(100)
